@@ -20,19 +20,9 @@ if($_POST["inicio"]){
 		
 				/// dependiendo del tipo de usuario lo redireccinamos a una pagina
 		/// si es un client
-		if($_SESSION['id_tipo_usuario'] == 1){
-			header("Location: ../model/admin/indexAdmin.php"); 
+		if($_SESSION['id_tipo_usuario']){
+			header("Location: ../model/menuPrincipal/indexMenu.php"); 
 			exit();
-		}
-		/// si es un propietario
-		elseif($_SESSION['id_tipo_usuario'] == 2){
-			header("Location: ../model/funcionario/indexFuncionario.php"); 
-			exit();		
-		}
-		/// si es un veterinario
-		elseif($_SESSION['id_tipo_usuario'] == 3){
-			header("Location: ../model/propietario/indexPropietario.php"); 
-			exit();		
 		}
 		
 		
