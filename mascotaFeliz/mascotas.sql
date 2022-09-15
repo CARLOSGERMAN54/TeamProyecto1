@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-09-2022 a las 01:28:48
+-- Tiempo de generación: 15-09-2022 a las 04:14:41
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -127,7 +127,8 @@ CREATE TABLE `tb_tipo_usuarios` (
 INSERT INTO `tb_tipo_usuarios` (`id_tipo_usuario`, `tipo_usuario`) VALUES
 (1, 'Administrador'),
 (2, 'Veterinario'),
-(3, 'Propietario');
+(3, 'Propietario'),
+(10, 'Auxiliar');
 
 -- --------------------------------------------------------
 
@@ -155,6 +156,7 @@ INSERT INTO `tb_usuarios` (`id_usuario`, `nombre_usuario`, `direccion`, `correo`
 ('1086498975', 'German', 'calle 5', 'german@gmail.com', '7345678', '1234', '1086498975', 2, 1),
 ('1086498976', 'CARLOS', 'carlos@gmail.com', 'carlos@gmail.com', '7203456', '1234', '1086498976', 1, 1),
 ('1086498977', 'Jimena', 'calle 13', 'jimena@gmail.com', '7309090', '1234', '454645645', 3, 1),
+('1086498978', 'Maria Erazo', 'calle 4', 'maria@gmail.com', '45345', '1234', '1086498978', 2, 1),
 ('1086498979', 'Silvana', 'calle 6', 'silvana@gmail.com', '7204567', '12345', '', 2, 1);
 
 -- --------------------------------------------------------
@@ -289,7 +291,7 @@ ALTER TABLE `tb_tipo_mascotas`
 -- AUTO_INCREMENT de la tabla `tb_tipo_usuarios`
 --
 ALTER TABLE `tb_tipo_usuarios`
-  MODIFY `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_visitas`

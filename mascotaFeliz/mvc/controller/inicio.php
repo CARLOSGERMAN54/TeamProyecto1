@@ -9,7 +9,7 @@ if($_POST["inicio"]){
 	
 	
 	/// consultamos el usuario segun el usuario y la clave
-	$con="select * from tb_usuarios where id_usuario = '$usuario' and password = '$clave'"; 	
+	$con="select * from tb_usuarios where id_usuario = '$usuario' and password = '$clave' and id_estado = 1"; 	
 	$query=mysqli_query($mysqli, $con);
 	$fila=mysqli_fetch_assoc($query);
 	if($fila){				

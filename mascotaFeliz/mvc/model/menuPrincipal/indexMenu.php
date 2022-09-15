@@ -21,7 +21,7 @@
 if(isset($_POST['btncerrar']))
 {
 	session_destroy();
-	header('location: ../../index.html');
+	header('location: ../../login.html');
 }
 ?>
 </div>
@@ -41,7 +41,12 @@ if(isset($_POST['btncerrar']))
 	</section>
 	<nav class="navegacion">
 		<ul class="menu wrapper" >
-			<!--menu registro de mascotas accesible por un propietario y un veterinario-->
+			<!--menu registro de mascotas accesible por un propietario y un veterinario ROLES-->
+			<!--id_tipo_usuario =(1) administrador-->
+			<!--id_tipo_usuario =(2) Veterinario o funcionario-->
+			<!--id_tipo_usuario =(3) propietario-->
+			<!--id_tipo_usuario =(10) auxiliar-->
+
 			<?php if($usua['id_tipo_usuario'] ==2)
 			{ 
 			?>
@@ -55,13 +60,13 @@ if(isset($_POST['btncerrar']))
 			<?php
 		     }
 			 ?>
-		   <?php if($usua['id_tipo_usuario'] ==2)
+		   <?php if($usua['id_tipo_usuario'] ==2 || $usua['id_tipo_usuario'] ==1)
 			{ 
 			?>
 			<li>
 				<a href="#">
-					<img src="img/ejecucion.png" alt="" class="imagen">
-					<span class="text-item">Listado Mascotas</span>
+				<img src="img/analisis.png" onclick="window.location.href='../listadoMascotas.php'" alt="" class="imagen">
+					<span class="text-item">LISTADO DE MASCOTAS</span>
 					<span class="down-item"></span>
 				</a>
 			</li>
@@ -74,77 +79,66 @@ if(isset($_POST['btncerrar']))
 			<li>
 				<a href="#">
 					<img src="img/implementar.jpg" alt="" class="imagen">
-					<span class="text-item">Gestion de Visitas</span>
+					<span class="text-item">HISTORIA CLINICA</span>
 					<span class="down-item"></span>
 				</a>
 			</li>
 			<?php
 		     }
 			 ?>
+		   <?php if($usua['id_tipo_usuario'] ==1)
+			{ 
+			?>
 			<li>
 				<a href="#">
-					<img src="img/planear.png" alt="" class="imagen">
-					<span class="text-item">OPCION 4</span>
+					<img src="img/planear.png" onclick="window.location.href='../registroTipoUsuario.php'" alt="" class="imagen">
+					<span class="text-item">REGISTRO TIPO USUARIOS</span>
 					<span class="down-item"></span>
 				</a>
 			</li>
-
-			<li>
-				<a href="#">
-					<img src="" alt="" class="imagen">
-					<span class="text-item">OPCION 5</span>
-					<span class="down-item"></span>
-				</a>
-			</li>
-
-			<li class="first-item">
-				<a href="#">
-					<img src="img/analisis.png" alt="" class="imagen">
-					<span class="text-item">OPCION 6</span>
-					<span class="down-item"></span>
-				</a>
-			</li>
-
+			<?php
+		     }
+			 ?>
+			<?php if($usua['id_tipo_usuario'] ==1)
+			{ 
+			?>
 			<li>
 				<a href="#">
 					<img src="" alt="" class="imagen">
-					<span class="text-item">OPCION 7</span>
+					<span class="text-item">ASIGNAR ROLES</span>
 					<span class="down-item"></span>
 				</a>
 			</li>
-
+			<?php
+		     }
+			 ?>
+			<?php if($usua['id_tipo_usuario'] ==1)
+			{ 
+			?>
 			<li>
 				<a href="#">
-					<img src="" alt="" class="imagen">
-					<span class="text-item">OPCION 8</span>
+					<img src="img/analisis.png" onclick="window.location.href='../registroUsuario.php'" alt="" class="imagen">
+					<span class="text-item">REGISTRO USUARIO</span>
 					<span class="down-item"></span>
 				</a>
 			</li>
+			<?php
+		     }
+			 ?>
 
+			<?php if($usua['id_tipo_usuario'] ==1 || $usua['id_tipo_usuario'] == 2)
+			{ 
+			?>
 			<li>
 				<a href="#">
-					<img src="" alt="" class="imagen">
-					<span class="text-item">OPCION 9</span>
+					<img src="img/analisis.png" onclick="window.location.href='../registroMascota.php'" alt="" class="imagen">
+					<span class="text-item">REGISTRO MASCOTA</span>
 					<span class="down-item"></span>
 				</a>
 			</li>
-
-			<li>
-				<a href="#">
-					<img src="" alt="" class="imagen">
-					<span class="text-item">OPCION 10</span>
-					<span class="down-item"></span>
-				</a>
-			</li>
-
-			<li>
-				<a href="#">
-					<img src="" alt="" class="imagen">
-					<span class="text-item">OPCION 11</span>
-					<span class="down-item"></span>
-				</a>
-			</li>
-			
+			<?php
+		     }
+			 ?>
 		</ul>
 		
 	</nav>

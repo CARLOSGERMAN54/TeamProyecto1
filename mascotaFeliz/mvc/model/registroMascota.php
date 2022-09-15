@@ -11,6 +11,7 @@
 	$query = mysqli_query($mysqli, $sql1) or die(mysqli_error());
 	//$query = mysqli_fetch_assoc($mascotas);
 ?>
+
 <form method="POST">
 	<tr>
 		<td colspan='2' align="center"><?php echo $usua['nombre_usuario'] .  "(". $usua['tipo_usuario'].")"?></td>
