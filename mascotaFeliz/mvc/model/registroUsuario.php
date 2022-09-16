@@ -73,7 +73,7 @@
 	<td colspan='2' align="center">
 		<input type="submit" value="Cerrar sesión" name="btncerrar" />
 	</td>
-		<input type="submit" formaction="../index.php" value="Regresar" />
+		<input type="submit" formaction="menuPrincipal/indexMenu.php" value="Regresar" />
 	</tr>
 </form>
 <?php 

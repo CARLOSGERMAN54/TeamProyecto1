@@ -9,27 +9,24 @@
 
 	$sql1 = "SELECT * FROM tb_tipo_mascotas";
 	$query = mysqli_query($mysqli, $sql1) or die(mysqli_error());
-	//$query = mysqli_fetch_assoc($mascotas);
+	$fila = mysqli_fetch_assoc($query);
 ?>
 
 <?php 
-	if((isset($_POST["guardar"])) && ($_POST["guardar"]=="frm_usu"))
+	if((isset($_POST["consultar"])) && ($_POST["consultar"]=="consul_masc"))
     {
 		$id_usuario = $_POST["id_usuario"];
-		$nombre_usuario = $_POST["nombre_usuario"];
-		$correo = $_POST["correo"];
 		//consulta para validar que el usuario no se encuentra registrado
-		$sql_usu1 = "select * from tb_usuarios where id_usuario = '$id_usuario' and correo = '$correo'";
+		$sql_usu1 = "select * from tb_usuarios where id_usuario = '$id_usuario'";
 		$usu = mysqli_query($mysqli,$sql_usu1);
 		$row1 = mysqli_fetch_assoc($usu);
-		if($row1){
-			echo "<script>alert('El tipo usuario ya existe con esos datos')</script>";
-			echo "<script>window.location = 'registroTipoUsuario.php'</script>";
+		if($_POST["id_usuario"]==""){
+			echo "<script>alert('Debe ingresar una cédula del propietario a consultar')</script>";
+			echo "<script>window.location = 'listadoMascotas.php'</script>";
 		}
-		elseif($_POST["id_usuario"]=="" || $_POST["nombre_usuario"]=="" || $_POST["direccion"]=="" || 
-			$_POST["correo"]=="" || $_POST["tarj_prof"]=="" || $_POST["password"]=="" || $_POST["telefono"]=="" || $_POST["id_tipo_usuario"]=="" || $_POST["id_estado"]==""){
-				echo "<script>alert('Existen datos vacios')</script>";
-				echo "<script>window.location = 'registroUsuario.php'</script>";
+		elseif(!$row1){
+				echo "<script>alert('El usuario no existe con esos datos')</script>";
+				echo "<script>window.location = 'listadoMascotas.php'</script>";
 		}
         else
         {
@@ -51,20 +48,6 @@
 	}
 ?>
 
-<?php
-	//tipos
-	$sql_tusu = "SELECT * FROM tb_tipo_usuarios";
-	$query_tusu = mysqli_query($mysqli,$sql_tusu);
-	$fila = mysqli_fetch_assoc($query_tusu);
-
-	//estados
-	$sql_est = "SELECT * FROM tb_estados";
-	$query_est = mysqli_query($mysqli,$sql_est);
-	$fila_est = mysqli_fetch_assoc($query_est);
-
-?>
-
-
 <form method="POST">
 	<tr>
 		<td colspan='2' align="center"><?php echo $usua['nombre_usuario'] .  "(". $usua['tipo_usuario'].")"?></td>
@@ -73,9 +56,10 @@
 	<td colspan='2' align="center">
 		<input type="submit" value="Cerrar sesión" name="btncerrar" />
 	</td>
-		<input type="submit" formaction="../index.php" value="Regresar" />
+		<input type="submit" formaction="menuPrincipal/indexMenu.php" value="Regresar" />
 	</tr>
 </form>
+
 <?php 
 if(isset($_POST['btncerrar']))
 {
@@ -83,100 +67,66 @@ if(isset($_POST['btncerrar']))
 	header('location: ../../index.html');
 }
 ?>
-</div>
-</div>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="../../img/HappyPetIcono.png" type="image/x-icon">
 <link rel="stylesheet" href="menuPrincipal/estilos.css">
-<title>taller</title>
-<style>
-	main{
-		background-color:red;
-	}
-</style>
+<title>Consultar Mascotas</title>
 </head>
 <body>
 	<section class="title">
 		<h1>LISTADO MASCOTAS</h1>
 	</section>
 	<main>
-		<table border="1" class="center center1">
-			<form name="frm_usu" method="POST" autocomplete="off">
+		<table border="1" class="center tablaEstilo2">
+			<form name="consul_masc" method="POST" autocomplete="off">
 				   <tr>
 				   		<th colspan="2">CONSULTAR</th>
 				   </tr>
 				   <tr>
-				   		<th>Documento Indetificacion</th>
-						<th><input type="number" name="id_usuario" placeholder="Ingrese documento usuario"/></th>
+				   		<th>Número de documento</th>
+						<td><input type="number" name="id_usuario" placeholder="Ingrese documento"/></td>
 				   </tr>
 				   <tr>
-					<th>Nombre Usuario</th>
-				 		<th><input type="text" name="nombre_usuario" placeholder="Ingresar nombre de Usuario"/></th>
-				    </tr>
-					<th>Direccion</th>
-				 		<th><input type="text" name="direccion" placeholder="Ingresar Dirección"/></th>
-				    </tr>
-					<th>Correo</th>
-				 		<th><input type="email" name="correo" placeholder="Ingresar correo"/></th>
-				    </tr>
-					<th>Teléfono</th>
-				 		<th><input type="number" name="telefono" placeholder="Ingresar telefono"/></th>
-				    </tr>
-					<th>Tarjeta Profesional</th>
-				 		<th><input type="text" name="tarj_prof" placeholder="Ingresar telefono"/></th>
-				    </tr>
-						<th>Contraseña</th>
-				 		<th><input type="password" name="password" placeholder="Ingresar telefono"/></th>
-				    </tr>
-					
-					<tr>
-						<th>Tipo Usuario</th>
-						<th>
-							<select name="id_tipo_usuario">
-								<option value="">Seleccionar Tipo de Usuario</option>
-								<?php 
-									do{
-								?>
-								<option value="<?php echo($fila["id_tipo_usuario"])?>"><?php echo($fila["tipo_usuario"])  ?></option>
-							     <?php
-									}
-									while($fila = mysqli_fetch_assoc($query_tusu));
-								 ?>
-							</select>
-						</th>
-					</tr>
-					<tr>
-					<th>Estado</th>
-						<th>
-							<select name="id_estado">
-								<option value="">Seleccionar Tipo de Usuario</option>
-								<?php 
-									do{
-								?>
-								<option value="<?php echo($fila_est["id_estado"])?>"><?php echo($fila_est["nombre_estado"]) ?></option>
-							     <?php
-									}
-									while($fila_est = mysqli_fetch_assoc($query_est));
-								 ?>
-							</select>
-						</th>
-					</tr>
-
-
-                    <tr>
+                   <tr>
                         <th colspan="2">&nbsp;</th>
                     </tr>
 				<tr>
-					<th colspan="2"><input type="submit" value="Guardar" name="btn-guardar"></th>
-					<input type="hidden" name="guardar" value="frm_usu">
+					<th colspan="2"><input type="submit" value="Consultar" name="btn-consultar"></th>
+					<td><input type="hidden" name="consultar" value="consul_masc"></td>
 				</tr>
 			</form>
 		</table>
+</head>
+<body>
 
+<h1>Resultados (1)</h1>
+
+<table class="center tablaEstilo">
+  <tr>
+    <th>ID mascota</th>
+    <th>Nombre mascota</th>
+    <th>Color</th>
+	<th>Raza</th>
+    <th>Nombre Propietario</th>
+    <th>Tipo mascota</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>pipe</td>
+    <td>negro cafe</td>
+	<td>pastor aleman</td>
+    <td>Jimena</td>
+    <td>Perros</td>
+  </tr>
+</table>
+
+</body>
 
 	</main>
 </body>

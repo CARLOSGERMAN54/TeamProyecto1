@@ -14,7 +14,6 @@
 	<tr><br>
 	<td colspan='2' align="center">
 		<input type="submit" value="Cerrar sesión" name="btncerrar" /></td>
-		<input type="submit" formaction="../index.php" value="Regresar" />
 	</tr>
 </form>
 <?php 
@@ -32,8 +31,9 @@ if(isset($_POST['btncerrar']))
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="../../../img/HappyPetIcono.png" type="image/x-icon">
 <link rel="stylesheet" href="estilos.css">
-<title>taller</title>
+<title>Menu Administrador</title>
 </head>
 <body>
 	<section class="title">
@@ -53,7 +53,7 @@ if(isset($_POST['btncerrar']))
 			<li>
 				<a href="#">
 					<img src="img/analisis.png" onclick="window.location.href='../registroMascota.php'" alt="" class="imagen">
-					<span class="text-item">Registro Mascotas</span>
+					<span class="text-item">REGISTRO MASCOTAS</span>
 					<span class="down-item"></span>
 				</a>
 			</li>
@@ -65,7 +65,7 @@ if(isset($_POST['btncerrar']))
 			?>
 			<li>
 				<a href="#">
-				<img src="img/analisis.png" onclick="window.location.href='../listadoMascotas.php'" alt="" class="imagen">
+				<img src="img/listadoMascota.png" onclick="window.location.href='../listadoMascotas.php'" alt="" class="imagen">
 					<span class="text-item">LISTADO DE MASCOTAS</span>
 					<span class="down-item"></span>
 				</a>
@@ -91,7 +91,7 @@ if(isset($_POST['btncerrar']))
 			?>
 			<li>
 				<a href="#">
-					<img src="img/planear.png" onclick="window.location.href='../registroTipoUsuario.php'" alt="" class="imagen">
+					<img src="img/registroTipoUsuario.png" onclick="window.location.href='../registroTipoUsuario.php'" alt="" class="imagen">
 					<span class="text-item">REGISTRO TIPO USUARIOS</span>
 					<span class="down-item"></span>
 				</a>
@@ -104,7 +104,7 @@ if(isset($_POST['btncerrar']))
 			?>
 			<li>
 				<a href="#">
-					<img src="" alt="" class="imagen">
+					<img src="img/asignarRoles.png" onclick="alert('En construcción')" alt="" class="imagen">
 					<span class="text-item">ASIGNAR ROLES</span>
 					<span class="down-item"></span>
 				</a>
@@ -117,7 +117,7 @@ if(isset($_POST['btncerrar']))
 			?>
 			<li>
 				<a href="#">
-					<img src="img/analisis.png" onclick="window.location.href='../registroUsuario.php'" alt="" class="imagen">
+					<img src="img/registroUsuario.png" onclick="window.location.href='../registroUsuario.php'" alt="" class="imagen">
 					<span class="text-item">REGISTRO USUARIO</span>
 					<span class="down-item"></span>
 				</a>
@@ -131,7 +131,7 @@ if(isset($_POST['btncerrar']))
 			?>
 			<li>
 				<a href="#">
-					<img src="img/analisis.png" onclick="window.location.href='../registroMascota.php'" alt="" class="imagen">
+					<img src="img/registroMascota.png" onclick="window.location.href='../registroMascota.php'" alt="" class="imagen">
 					<span class="text-item">REGISTRO MASCOTA</span>
 					<span class="down-item"></span>
 				</a>

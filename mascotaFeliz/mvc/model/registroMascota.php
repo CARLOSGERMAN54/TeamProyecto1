@@ -20,7 +20,7 @@
 	<td colspan='2' align="center">
 		<input type="submit" value="Cerrar sesión" name="btncerrar" />
 	</td>
-		<input type="submit" formaction="../index.php" value="Regresar" />
+		<input type="submit" formaction="menuPrincipal/indexMenu.php" value="Regresar" />
 	</tr>
 </form>
 <?php 
@@ -39,35 +39,60 @@ if(isset($_POST['btncerrar']))
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="menuPrincipal/estilos.css">
-<title>taller</title>
+<title>Registro mascota</title>
 </head>
 <body>
 	<section class="title">
 		<h1>REGISTRO DE MASCOTAS</h1>
 	</section>
 	<main>
-		<form method="POST" name="form1" id="form1" action="controller/inicio.php" autocomplete="off">
-            <input type="text" name="nombre_mascota" id="nombre_mascota" placeholder="Digite el nombre de la mascota">
-			<input type="text" name="color" id="color" placeholder="Digite el color de la mascota">
-			<input type="text" name="raza" id="raza" placeholder="Digite la raza de la mascota">
-			<input type="text" name="id_usuario" id="id_usuario" placeholder="Digite el documento del propietario">
-            <select name="id_tipo_mascota" id="id_tipo_mascota">
-                <option value="">Seleccionar</option>
-               <?php
-                   while($mascotas=mysqli_fetch_assoc($query)){
-                
-                ?>
-                    <option value="<?php echo($mascotas['id_tipo_mascota'])?>"> <?php echo($mascotas['tipo_mascota'])?>
+		<table border="1" class="center tablaEstilo2">
+			<form method="POST" name="form1" id="form1" action="controller/inicio.php" autocomplete="off">
+				<tr>
+					<th colspan="2">Registro</th>
+				</tr>
+				<tr>
+					<th>Nombre mascota</th>
+					<td><input type="text" name="nombre_mascota" id="nombre_mascota" placeholder="Digite el nombre de la mascota"></td>
+				</tr>
+				<tr>
+					<th>Color mascota</th>
+					<td><input type="text" name="color" id="color" placeholder="Digite el color de la mascota"></td>
+				</tr>
+				<tr>
+					<th>Raza mascota</th>
+					<td><input type="text" name="raza" id="raza" placeholder="Digite la raza de la mascota"></td>
+				</tr>
+				<tr>
+					<th>Documento propietario</th>
+					<td><input type="text" name="id_usuario" id="id_usuario" placeholder="Digite el documento del propietario"></td>
+				</tr>
+				<tr>
+					<th>Tipo mascota</th>
+					<td><select name="id_tipo_mascota" id="id_tipo_mascota">
+					<option value="">Seleccionar</option>
+				<?php
+					while($mascotas=mysqli_fetch_assoc($query)){
+					
+					?>
+						<option value="<?php echo($mascotas['id_tipo_mascota'])?>"> <?php echo($mascotas['tipo_mascota'])?>
 
-               <?php   
-                   }
-               
-               ?>
-            </select>     
-            <!--select-->
-            <input type="submit" name="registro_mascota" value="Guardar">
-            <input type="hidden" name="MM_insert" value="formmas">
-        </form>
+				<?php   
+					}
+				
+				?>
+				</select></td>
+				</tr>
+				<tr>
+                    <th colspan="2">&nbsp;</th>
+                </tr>
+				<tr>
+					<td colspan="2"><input type="submit" name="registro_mascota" value="Guardar">
+				<input type="hidden" name="MM_insert" value="formmas"></td>
+				</tr>
+				
+			</form>
+		</table>
 	</main>
 </body>
 </html>
