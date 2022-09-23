@@ -6,10 +6,6 @@
 	$sql = "SELECT * FROM tb_usuarios, tb_tipo_usuarios WHERE id_usuario = '".$_SESSION['id_usuario']."' AND tb_usuarios.id_tipo_usuario = tb_tipo_usuarios.id_tipo_usuario";
 	$usuarios = mysqli_query($mysqli, $sql) or die(mysqli_error());
 	$usua = mysqli_fetch_assoc($usuarios);
-
-	$sql1 = "SELECT * FROM tb_tipo_mascotas";
-	$query = mysqli_query($mysqli, $sql1) or die(mysqli_error());
-	//$query = mysqli_fetch_assoc($mascotas);
 ?>
 
 <?php 
@@ -102,7 +98,7 @@ if(isset($_POST['btncerrar']))
 		<table border="1" class="center">
 			<form name="frm_usu" method="POST" autocomplete="off">
 				   <tr>
-				   		<th colspan="2">Crear Tipos de usuario</th>
+				   		<th colspan="2">Crear Usuario</th>
 				   </tr>
 				   <tr>
 				   		<th>Documento Indetificacion</th>

@@ -73,7 +73,7 @@ if(isset($_POST['btncerrar']))
 		<h1>REGISTRO TIPO DE USUARIO</h1>
 	</section>
 	<main>
-		<table border="1" class="center">
+		<table class="formulario" border="1" class="center">
 			<form name="frm_usu" method="POST" autocomplete="off">
 				   <tr>
 				   		<th colspan="2">Crear Tipos de usuario</th>
@@ -90,7 +90,7 @@ if(isset($_POST['btncerrar']))
                         <th colspan="2">&nbsp;</th>
                     </tr>
 				<tr>
-					<th colspan="2"><input type="submit" value="Guardar" name="btn-guardar"></th>
+					<th colspan="2"><input class="boton"type="submit" value="Guardar" name="btn-guardar"></th>
 					<input type="hidden" name="guardar" value="frm_usu">
 				</tr>
 			</form>

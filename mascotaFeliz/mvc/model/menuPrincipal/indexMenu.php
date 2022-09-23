@@ -46,6 +46,19 @@ if(isset($_POST['btncerrar']))
 			<!--id_tipo_usuario =(2) Veterinario o funcionario-->
 			<!--id_tipo_usuario =(3) propietario-->
 			<!--id_tipo_usuario =(10) auxiliar-->
+			<?php if($usua['id_tipo_usuario'] ==1)
+			{ 
+			?>
+			<li>
+				<a href="#">
+					<img src="img/listadoMascota.png" onclick="window.location.href='../listaUsuarios.php'" alt="" class="imagen">
+					<span class="text-item">LISTADO USUARIOS</span>
+					<span class="down-item"></span>
+				</a>
+			</li>
+			<?php
+		     }
+			 ?>
 
 			<?php if($usua['id_tipo_usuario'] ==2)
 			{ 
