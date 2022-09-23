@@ -6,6 +6,12 @@ include("../controller/validarSesion.php");
 //actualizar datos en la tabla tb_usuarios
 if(isset($_POST["actualizar"]) && isset($_POST["id_usuario"]))
 {
+    if($_POST["id_usuario"]=="" || $_POST["nombre_usuario"]=="" || $_POST["direccion"]=="" || 
+    $_POST["correo"]=="" || $_POST["tarj_prof"]=="" || $_POST["password"]=="" || $_POST["telefono"]=="" || $_POST["id_tipo_usuario"]=="" || $_POST["id_estado"]==""){
+        echo "<script>alert('Existen datos vacios')</script>";
+        exit();
+    }
+
    $id_usuario = $_POST['id_usuario'];
    $nombre_usuario = $_POST['nombre_usuario'];
    $direccion = $_POST['direccion'];
@@ -15,9 +21,11 @@ if(isset($_POST["actualizar"]) && isset($_POST["id_usuario"]))
    $tarj_prof = $_POST['tarj_prof'];
    $id_tipo_usuario = $_POST['id_tipo_usuario'];
    $id_estado = $_POST['id_estado'];
+
+
+
    $sql_update="UPDATE tb_usuarios SET nombre_usuario = '$nombre_usuario', direccion = '$direccion', correo = '$correo', 
    telefono = '$telefono', password = '$password',tarj_prof = '$tarj_prof',id_tipo_usuario = $id_tipo_usuario,id_estado = $id_estado WHERE id_usuario = '". $id_usuario."'";
-   echo $sql_update;
    $cs=mysqli_query($mysqli, $sql_update);
    if($cs){
     echo '<script>alert(" Actualización Exitosa ");window.close();window.location.href;</script>';
@@ -58,15 +66,8 @@ elseif (isset($_POST["eliminar"]) && isset($_POST["id_usuario"]))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="menuPrincipal/estilos.css">
     <title>Document</title>
-    <script>
-        function centrar() { 
-            iz=(screen.width-document.body.clientWidth) / 2; 
-            de=(screen.height-document.body.clientHeight) / 2; 
-            moveTo(iz,de); 
-        } 
-        centrar();    
-</script>
 </head>
 <body>
 
@@ -80,38 +81,41 @@ elseif (isset($_POST["eliminar"]) && isset($_POST["id_usuario"]))
         $query_usu = mysqli_query($mysqli,$sql_tusu);
         $usua = mysqli_fetch_assoc($query_usu);
 ?>
-<table border="1" class="center">
+<table border="1" class="center tablaEstilo">
 			<form name="frm_usu" method="POST" action="operacionesUsuario.php" autocomplete="off">
 				   <tr>
-				   		<th colspan="2">Actualizar usuario</th>
+				   		<td colspan="2">Actualizar usuario</td>
 				   </tr>
 				   <tr>
-				   		<th>Documento Indetificacion</th>
-						<th><input type="number" name="id_usuario" readonly value="<?php echo $usua["id_usuario"]?>" placeholder="Ingrese documento usuario"/></th>
+				   		<td>Documento Indetificacion</td>
+						<td><input type="number" name="id_usuario" readonly value="<?php echo $usua["id_usuario"]?>" placeholder="Ingrese documento usuario"/></td>
 				   </tr>
 				   <tr>
-					<th>Nombre Usuario</th>
-				 		<th><input type="text" name="nombre_usuario" value="<?php echo $usua["nombre_usuario"]?>"  placeholder="Ingresar nombre de Usuario"/></th>
+					    <td>Nombre Usuario</td>
+				 		<td><input type="text" name="nombre_usuario" value="<?php echo $usua["nombre_usuario"]?>"  placeholder="Ingresar nombre de Usuario"/></td>
 				    </tr>
-					<th>Direccion</th>
-				 		<th><input type="text" name="direccion" value="<?php echo $usua["direccion"]?>" placeholder="Ingresar Dirección"/></th>
+                    <tr>
+                        <td>Direccion</td>
+				 		<td><input type="text" name="direccion" value="<?php echo $usua["direccion"]?>" placeholder="Ingresar Dirección"/></td>
+                    </tr>
+                    <tr>
+					    <td>Correo</td>
+				 		<td><input type="email" name="correo" value="<?php echo $usua["correo"]?>" placeholder="Ingresar correo"/></td>
 				    </tr>
-					<th>Correo</th>
-				 		<th><input type="email" name="correo" value="<?php echo $usua["correo"]?>" placeholder="Ingresar correo"/></th>
+                    <tr>
+					    <td>Teléfono</td>
+				 		<td><input type="number" name="telefono" value="<?php echo $usua["telefono"]?>" placeholder="Ingresar telefono"/></td>
 				    </tr>
-					<th>Teléfono</th>
-				 		<th><input type="number" name="telefono" value="<?php echo $usua["telefono"]?>" placeholder="Ingresar telefono"/></th>
+                    <tr>
+					    <td>Tarjeta Profesional</td>
+				 		<td><input type="text" name="tarj_prof" value="<?php echo $usua["tarj_prof"]?>" placeholder="Ingresar telefono"/></td>
 				    </tr>
-					<th>Tarjeta Profesional</th>
-				 		<th><input type="text" name="tarj_prof" value="<?php echo $usua["tarj_prof"]?>" placeholder="Ingresar telefono"/></th>
+						<td>Contraseña</td>
+				 		<td><input type="password" name="password" value="<?php echo $usua["password"]?>" placeholder="Ingresar telefono"/></td>
 				    </tr>
-						<th>Contraseña</th>
-				 		<th><input type="password" name="password" value="<?php echo $usua["password"]?>" placeholder="Ingresar telefono"/></th>
-				    </tr>
-					
-					<tr>
-						<th>Tipo Usuario</th>
-						<th>
+                    <tr>
+						<td>Tipo Usuario</td>
+						<td>
 							<select name="id_tipo_usuario" >
 								<?php 
 									
@@ -129,11 +133,11 @@ elseif (isset($_POST["eliminar"]) && isset($_POST["id_usuario"]))
 									}while($fila = mysqli_fetch_assoc($query_tusu));
 								 ?>
 							</select>
-						</th>
+						</td>
 					</tr>
 					<tr>
-					<th>Estado</th>
-						<th>
+					<td>Estado</td>
+						<td>
 							<select name="id_estado" value="<?php echo $usua["id_estado"]?>">
 								<?php 
                                     do{
@@ -151,11 +155,8 @@ elseif (isset($_POST["eliminar"]) && isset($_POST["id_usuario"]))
                                 }while($fila_est = mysqli_fetch_assoc($query_est));
 								 ?>
 							</select>
-						</th>
+						</td>
 					</tr>
-                    <tr>
-                        <th colspan="2">&nbsp;</th>
-                    </tr>
 				<tr>
 					<th colspan="2"><input type="submit" value="Guardar" name="actualizar"></th>
 				</tr>
@@ -164,11 +165,15 @@ elseif (isset($_POST["eliminar"]) && isset($_POST["id_usuario"]))
 <?php
 //condicion para determinar si el usuario presiono el boton eliminar, nos muestra la confirmacion si deseamos eliminar un registro
 }elseif(isset($_GET["id_accion"]) && $_GET["id_accion"] =="botonEliminar"){
-    echo "<h2>Esta seguro de eliminar el registro</h2>";
     ?>
+
     <form method="post" action="operacionesUsuario.php">
     <input type="hidden" value="<?php echo $_GET["id_usuario"]; ?>" name="id_usuario">
-        <table>
+        <br/><br/><br/><br/><br/><br/>
+        <table class="center tablaEstilo">
+            <tr>
+				<th colspan="2">¿Esta seguro de eliminar el registro?</th>
+			</tr>
             <tr>
                 <td><input type="submit" value="Si" name="eliminar"></td>
                 <td><input type="button" value="No" name="cancelar" onclick="window.close()"></td>

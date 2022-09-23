@@ -46,7 +46,6 @@
         }
 	}
 ?>
-
 <?php
 	//tipos
 	$sql_tusu = "SELECT * FROM tb_tipo_usuarios";
@@ -57,20 +56,19 @@
 	$sql_est = "SELECT * FROM tb_estados";
 	$query_est = mysqli_query($mysqli,$sql_est);
 	$fila_est = mysqli_fetch_assoc($query_est);
-
 ?>
-
-
 <form method="POST">
-	<tr>
-		<td colspan='2' align="center"><?php echo $usua['nombre_usuario'] .  "(". $usua['tipo_usuario'].")"?></td>
-	</tr>
-	<tr><br>
-	<td colspan='2' align="center">
-		<input type="submit" value="Cerrar sesión" name="btncerrar" />
-	</td>
-		<input type="submit" formaction="menuPrincipal/indexMenu.php" value="Regresar" />
-	</tr>
+    <table>
+        <tr>
+            <td colspan='2' align="center"><?php echo $usua['nombre_usuario'] .  "(". $usua['tipo_usuario'].")"?></td>
+        </tr>
+        <tr>
+            <td colspan='2' align="center">
+                <input type="submit" value="Cerrar sesión" name="btncerrar" /> 
+                <input type="submit" formaction="menuPrincipal/indexMenu.php" value="Regresar" />
+            </td>
+        </tr>
+    <table>
 </form>
 <?php 
 if(isset($_POST['btncerrar']))
@@ -94,39 +92,46 @@ if(isset($_POST['btncerrar']))
 	<section class="title">
 		<h1>REGISTRO USUARIO</h1>
 	</section>
+	<table class="center tablaEstilo">
+            <tr>
+                <td><input type="button" value="Lista de Usuarios" onclick="window.location.href='listaUsuarios.php'"/></td>
+            </tr>
+        </table>
 	<main>
-		<table border="1" class="center">
+		<table  class="center tablaEstilo">
 			<form name="frm_usu" method="POST" autocomplete="off">
 				   <tr>
 				   		<th colspan="2">Crear Usuario</th>
 				   </tr>
 				   <tr>
-				   		<th>Documento Indetificacion</th>
-						<th><input type="number" name="id_usuario" placeholder="Ingrese documento usuario"/></th>
+				   		<td>Documento Indetificacion</td>
+						<td><input type="number" name="id_usuario" placeholder="eje. 123456789"/></td>
 				   </tr>
 				   <tr>
-					<th>Nombre Usuario</th>
-				 		<th><input type="text" name="nombre_usuario" placeholder="Ingresar nombre de Usuario"/></th>
+						<td>Nombre Usuario</td>
+				 		<td><input type="text" name="nombre_usuario" placeholder="eje. Pedro Perez"/></td>
 				    </tr>
-					<th>Direccion</th>
-				 		<th><input type="text" name="direccion" placeholder="Ingresar Dirección"/></th>
+					<tr>
+						<td>Direccion</td>
+				 		<td><input type="text" name="direccion" placeholder="eje. Calle 13 #40-20"/></td>
+					</tr>
 				    </tr>
-					<th>Correo</th>
-				 		<th><input type="email" name="correo" placeholder="Ingresar correo"/></th>
+						<td>Correo</td>
+				 		<td><input type="email" name="correo" placeholder="eje. usuario@mail.com"/></td>
 				    </tr>
-					<th>Teléfono</th>
-				 		<th><input type="number" name="telefono" placeholder="Ingresar telefono"/></th>
+						<td>Teléfono</td>
+				 		<td><input type="number" name="telefono" placeholder="eje. 1234566778"/></td>
 				    </tr>
-					<th>Tarjeta Profesional</th>
-				 		<th><input type="text" name="tarj_prof" placeholder="Ingresar telefono"/></th>
+						<td>Tarjeta Profesional</td>
+				 		<td><input type="text" name="tarj_prof" placeholder="eje. 1234567-67"/></td>
 				    </tr>
-						<th>Contraseña</th>
-				 		<th><input type="password" name="password" placeholder="Ingresar telefono"/></th>
+						<td>Contraseña</td>
+				 		<td><input type="password" name="password" placeholder="Ingresar contraseña"/></td>
 				    </tr>
 					
 					<tr>
-						<th>Tipo Usuario</th>
-						<th>
+						<td>Tipo Usuario</td>
+						<td>
 							<select name="id_tipo_usuario">
 								<option value="">Seleccionar Tipo de Usuario</option>
 								<?php 
@@ -138,11 +143,11 @@ if(isset($_POST['btncerrar']))
 									while($fila = mysqli_fetch_assoc($query_tusu));
 								 ?>
 							</select>
-						</th>
+						</td>
 					</tr>
 					<tr>
-					<th>Estado</th>
-						<th>
+					<td>Estado</td>
+						<td>
 							<select name="id_estado">
 								<option value="">Seleccionar Tipo de Usuario</option>
 								<?php 
@@ -154,13 +159,8 @@ if(isset($_POST['btncerrar']))
 									while($fila_est = mysqli_fetch_assoc($query_est));
 								 ?>
 							</select>
-						</th>
+						</td>
 					</tr>
-
-
-                    <tr>
-                        <th colspan="2">&nbsp;</th>
-                    </tr>
 				<tr>
 					<th colspan="2"><input type="submit" value="Guardar" name="btn-guardar"></th>
 					<input type="hidden" name="guardar" value="frm_usu">

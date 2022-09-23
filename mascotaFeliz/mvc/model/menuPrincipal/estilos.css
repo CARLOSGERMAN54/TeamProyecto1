@@ -170,7 +170,7 @@ box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.51);
   width: 75%;
 }
 
-.tablaEstilo td, .tablaEstilo th {
+.tablaEstilo td, .tablaEstilo th ,.tablaEstilo input,.tablaEstilo select{
   border: 1px solid #ddd;
   padding: 8px;
 }
@@ -186,4 +186,5 @@ box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.51);
   background-color: #04AA6D;
   color: white;
 }
+
 

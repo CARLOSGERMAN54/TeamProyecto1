@@ -8,15 +8,17 @@
 	$usua = mysqli_fetch_assoc($usuarios);
 ?>
 <form method="POST">
-	<tr>
-		<td colspan='2' align="center"><?php echo $usua['nombre_usuario'] .  "(". $usua['tipo_usuario'].")"?></td>
-	</tr>
-	<tr><br>
-	<td colspan='2' align="center">
-		<input type="submit" value="Cerrar sesión" name="btncerrar" />
-	</td>
-		<input type="submit" formaction="menuPrincipal/indexMenu.php" value="Regresar" />
-	</tr>
+    <table>
+        <tr>
+            <td colspan='2' align="center"><?php echo $usua['nombre_usuario'] .  "(". $usua['tipo_usuario'].")"?></td>
+        </tr>
+        <tr>
+            <td colspan='2' align="center">
+                <input type="submit" value="Cerrar sesión" name="btncerrar" /> 
+                <input type="submit" formaction="menuPrincipal/indexMenu.php" value="Regresar" />
+            </td>
+        </tr>
+    <table>
 </form>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +33,14 @@
 <body>
     <body>
         <section class="title">
-            <h1><?php echo $usua["tipo_usuario"]?>FORMULARIO CONSULTAR USUARIOS</h1>
+            <h1>FORMULARIO CONSULTAR USUARIOS</h1>
         </section>
-        <table class="formulario" border="1" class="center">
+        <table class="center tablaEstilo">
+            <tr>
+                <td><input type="button" value="Nuevo Usuario" onclick="window.location.href='registroUsuario.php'"/></td>
+            </tr>
+        </table>
+        <table class="center tablaEstilo">
             <form name="frm_consulta" method="post" autocomplete="off">
                 <tr>
                     <th>Id</th>

@@ -83,7 +83,7 @@ if(isset($_POST['btncerrar']))
 		<h1>LISTADO MASCOTAS</h1>
 	</section>
 	<main>
-		<table border="1" class="center tablaEstilo2">
+		<table border="1" class="center tablaEstilo">
 			<form name="consul_masc" method="POST" autocomplete="off">
 				   <tr>
 				   		<th colspan="2">CONSULTAR</th>
