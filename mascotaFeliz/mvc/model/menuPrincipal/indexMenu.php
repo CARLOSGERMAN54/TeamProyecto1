@@ -51,7 +51,7 @@ if(isset($_POST['btncerrar']))
 			?>
 			<li>
 				<a href="#">
-					<img src="img/listadoMascota.png" onclick="window.location.href='../listaUsuarios.php'" alt="" class="imagen">
+					<img src="img/listadoUsuarios.png" onclick="window.location.href='../listaUsuarios.php'" alt="" class="imagen">
 					<span class="text-item">LISTADO USUARIOS</span>
 					<span class="down-item"></span>
 				</a>
