@@ -48,16 +48,17 @@
 	}
 ?>
 
-<form method="POST">
-	<tr>
-		<td colspan='2' align="center"><?php echo $usua['nombre_usuario'] .  "(". $usua['tipo_usuario'].")"?></td>
-	</tr>
-	<tr><br>
-	<td colspan='2' align="center">
-		<input type="submit" value="Cerrar sesión" name="btncerrar" />
-	</td>
-		<input type="submit" formaction="menuPrincipal/indexMenu.php" value="Regresar" />
-	</tr>
+<form method="POST" class="form-contenedor">
+	
+	<div class="boton-usuario">
+		<?php echo $usua['nombre_usuario'] .  "(". $usua['tipo_usuario'].")"?>
+	</div>
+	<div>
+		<input class="boton-sesion" type="submit" formaction="menuPrincipal/indexMenu.php" value="Regresar" />
+	</div>
+	<div>
+		<input class="boton-sesion" type="submit" value="Cerrar sesión" name="btncerrar" />
+	</div>
 </form>
 
 <?php 

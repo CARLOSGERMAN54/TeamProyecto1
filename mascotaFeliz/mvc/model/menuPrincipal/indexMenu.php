@@ -7,45 +7,61 @@
 	$usuarios = mysqli_query($mysqli, $sql) or die(mysqli_error());
 	$usua = mysqli_fetch_assoc($usuarios);
 ?>
-<form method="POST">
-	<tr>
-		<td colspan='2' align="center"><?php echo $usua['nombre_usuario']?></td>
-	</tr>
-	<tr><br>
-	<td colspan='2' align="center">
-		<input type="submit" value="Cerrar sesión" name="btncerrar" /></td>
-	</tr>
+<form method="POST" class="formulario">
+	<div class= "boton-usuario">
+		<?php echo $usua['nombre_usuario']?>
+	</div>
+	<div >
+		<input class="boton-sesion" type="submit" value="Cerrar sesión" name="btncerrar" />
+	</div>
 </form>
+<div class= "contenedor-logo">
+	
+</div>
 <?php 
 if(isset($_POST['btncerrar']))
 {
 	session_destroy();
 	header('location: ../../login.html');
 }
+
 ?>
 </div>
 </div>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="../../../img/HappyPetIcono.png" type="image/x-icon">
-<link rel="stylesheet" href="estilos.css">
-<title>Menu Administrador</title>
-</head>
-<body>
-	<section class="title">
-		<h1>INTERFAZ    <?php echo $usua['tipo_usuario']?></h1>
-	</section>
-	<nav class="navegacion">
-		<ul class="menu wrapper" >
-			<!--menu registro de mascotas accesible por un propietario y un veterinario ROLES-->
-			<!--id_tipo_usuario =(1) administrador-->
-			<!--id_tipo_usuario =(2) Veterinario o funcionario-->
-			<!--id_tipo_usuario =(3) propietario-->
-			<!--id_tipo_usuario =(10) auxiliar-->
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="shortcut icon" href="../../../img/HappyPetIcono.png" type="image/x-icon">
+			<link rel="stylesheet" href="estilos.css">
+			<title>Menu ADMINISTRADOR</title>
+		</head>
+		<body>
+			<section class="title">
+				<h1><?php echo $usua['tipo_usuario']?></h1>
+			</section>
+			<nav class="navegacion">
+				<ul class="menu wrapper" >
+					<!--menu registro de mascotas accesible por un propietario y un veterinario ROLES-->
+					<!--id_tipo_usuario =(1) administrador-->
+					<!--id_tipo_usuario =(2) Veterinario o funcionario-->
+					<!--id_tipo_usuario =(3) propietario-->
+					<!--id_tipo_usuario =(10) auxiliar-->
+					<?php if($usua['id_tipo_usuario'] ==1)
+					{ 
+					?>
+					<li>
+						<a href="#">
+							<img src="img/listadoUsuarios.png" onclick="window.location.href='../listaUsuarios.php'" alt="" class="imagen">
+							<span class="text-item">LISTADO USUARIOS</span>
+							<span class="down-item"></span>
+						</a>
+					</li>
+				<?php
+		     }
+			 ?>
 
 			<?php if($usua['id_tipo_usuario'] ==2)
 			{ 

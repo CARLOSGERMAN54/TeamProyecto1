@@ -135,7 +135,7 @@ main .sobre-nosotros{
 }
 
 .portafolio::before{
-    background-image: url("../img/fondo.jpg");
+    background-image: url("../img/portadaMenu.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
