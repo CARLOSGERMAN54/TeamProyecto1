@@ -1,5 +1,5 @@
 <?php
-
+//inicio session1
     session_start();
     require_once("../../db/connection.php");
 	include("../../controller/validarSesion.php");
