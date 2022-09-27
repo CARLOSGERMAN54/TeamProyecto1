@@ -9,51 +9,49 @@
 <?php 
 	if((isset($_POST["guardar"])) && ($_POST["guardar"]=="frm_usu"))
     {
-		$id_usuario = $_POST["id_usuario"];
-		$nombre_usuario = $_POST["nombre_usuario"];
-		$correo = $_POST["correo"];
-		//consulta para validar que el usuario no se encuentra registrado
-		$sql_usu1 = "select * from tb_usuarios where id_usuario = '$id_usuario' and correo = '$correo'";
-		$usu = mysqli_query($mysqli,$sql_usu1);
-		$row1 = mysqli_fetch_assoc($usu);
-		if($row1){
-			echo "<script>alert('El tipo usuario ya existe con esos datos')</script>";
-			echo "<script>window.location = 'registroTipoUsuario.php'</script>";
-		}
-		elseif($_POST["id_usuario"]=="" || $_POST["nombre_usuario"]=="" || $_POST["direccion"]=="" || 
-			$_POST["correo"]=="" || $_POST["tarj_prof"]=="" || $_POST["password"]=="" || $_POST["telefono"]=="" || $_POST["id_tipo_usuario"]=="" || $_POST["id_estado"]==""){
+
+		if($_POST["temperatura"]=="" || $_POST["frec_respiratoria"]=="" || $_POST["frec_cardiaca"]=="" || 
+			$_POST["peso"]=="" || $_POST["recomendacion"]=="" || $_POST["costo"]=="" || $_POST["id_mascota"]==""){
 				echo "<script>alert('Existen datos vacios')</script>";
-				echo "<script>window.location = 'registroUsuario.php'</script>";
+				echo "<script>window.location = 'registroVisita.php'</script>";
 		}
         else
         {
-			$id_usuario = $_POST["id_usuario"];
-			$nombre_usuario = $_POST["nombre_usuario"];
-			$direccion = $_POST["direccion"];
-			$correo = $_POST["correo"];
-			$telefono = $_POST["telefono"];
-			$tarj_prof= $_POST["tarj_prof"];
-			$password =  $_POST["password"];
-			$id_tipo_usuario = $_POST["id_tipo_usuario"];
-			$id_estado = $_POST["id_estado"];
-            $sql_usu1 = "insert into tb_usuarios(id_usuario,nombre_usuario,direccion,correo,telefono,tarj_prof,password,id_tipo_usuario,id_estado)
-			values('$id_usuario','$nombre_usuario','$direccion','$correo','$telefono','$tarj_prof','$password',$id_tipo_usuario,$id_estado)";
-            $tip = mysqli_query($mysqli,$sql_usu1);
-            echo "<script>alert('Registro Almacenado Exitosamente')</script>";
-			echo "<script>window.location = 'registroUsuario.php'</script>";
+			$fecha_actual = date('Y-m-d H:i:s');
+			$temperatura = $_POST["temperatura"];
+			$frec_respiratoria = $_POST["frec_respiratoria"];
+			$frec_cardiaca = $_POST["frec_cardiaca"];
+			$peso = $_POST["peso"];
+			$recomendacion = $_POST["recomendacion"];
+			$costo = $_POST["costo"];
+			$id_mascota = $_POST["id_mascota"];
+			$id_estado = 1;
+			$id_usuario = $_SESSION['id_usuario'];
+            $sql_visit = "insert into tb_visitas(fecha,temperatura,frec_respiratoria,frec_cardiaca,peso,recomendacion,costo,id_mascota,id_estado,id_usuario)
+			values('$fecha_actual',$temperatura,$frec_respiratoria,$frec_cardiaca,'$peso',
+			'$recomendacion',$costo,$id_mascota,$id_estado,'$id_usuario')";
+            $tip = mysqli_query($mysqli,$sql_visit);
+			if($tip)
+			{
+				echo "<script>alert('Registro Almacenado Exitosamente')</script>";
+				echo "<script>window.location = 'registroVisita.php'</script>";
+			}
+			else{
+				echo "<script>alert('Hubo un problema al guardar el registro. Intentalo mas tarde')</script>";
+			}
         }
 	}
 ?>
 <?php
 	//tipos
-	$sql_tmas = "SELECT * FROM tb_mascotas";
+	$sql_tmas = "SELECT mas.id_mascota,mas.nombre_mascota,
+	   mas.color,mas.raza,mas.id_usuario,usu.nombre_usuario,
+	   tip.id_tipo_mascota,tip.tipo_mascota
+	 FROM tb_mascotas mas inner join tb_usuarios usu on mas.id_usuario = usu.id_usuario
+	                      inner join tb_tipo_mascotas tip on mas.id_tipo_mascota = tip.id_tipo_mascota 
+						  where usu.id_tipo_usuario = 3;";
 	$query_tmas = mysqli_query($mysqli,$sql_tmas);
-	$fila = mysqli_fetch_assoc($query_tusu);
-
-	//estados
-	$sql_est = "SELECT * FROM tb_estados";
-	$query_est = mysqli_query($mysqli,$sql_est);
-	$fila_est = mysqli_fetch_assoc($query_est);
+	$fila = mysqli_fetch_assoc($query_tmas);
 ?>
 <form method="POST">
     <table>
@@ -102,6 +100,22 @@ if(isset($_POST['btncerrar']))
 				   		<th colspan="2">Registro Visitas</th>
 				   </tr>
 				   <tr>
+						<td>Selecciona Mascota</td>
+						<td>
+							<select name="id_mascota">
+								<option value="">Seleccionar Mascota</option>
+								<?php 
+									do{
+								?>
+								<option value="<?php echo($fila["id_mascota"])?>"><?php echo("Mascota(".$fila["nombre_mascota"]." ".$fila["tipo_mascota"].") Propietario(".$fila["id_usuario"]." ".$fila["nombre_usuario"].")")  ?></option>
+							     <?php
+									}
+									while($fila = mysqli_fetch_assoc($query_tmas));
+								 ?>
+							</select>
+						</td>
+					</tr>
+				   <tr>
 				   		<td>Temperatura(C°)</td>
 						<td><input type="number" name="temperatura" placeholder="eje. 35.5" /></td>
 				   </tr>
@@ -120,30 +134,8 @@ if(isset($_POST['btncerrar']))
                     <tr>
 						<td>Costo</td>
 				 		<td><input type="number" name="costo" placeholder="eje. 20300"/></td>
-				    </tr>
-
-                    </tr>
-						<td>Identificación Propietario</td>
-				 		<td><input type="text" name="id_usuario" placeholder="eje. 20300"/></td>
-				    </tr>
-					
-					<tr>
-						<td>Selecciona Mascota</td>
-						<td>
-							<select name="id_mascota">
-								<option value="">Seleccionar Mascota</option>
-								<?php 
-									do{
-								?>
-								<option value="<?php echo($fila["id_mascota"])?>"><?php echo($fila["nombre_mascota"])  ?></option>
-							     <?php
-									}
-									while($fila = mysqli_fetch_assoc($query_tusu));
-								 ?>
-							</select>
-						</td>
-					</tr>
-                    </tr>
+				    </tr>					
+                    <tr>
 						<td>Recomendación</td>
 				 		<td>
                             <textarea name="recomendacion" cols="30" rows="10"></textarea>
