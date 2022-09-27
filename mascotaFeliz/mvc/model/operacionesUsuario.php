@@ -23,7 +23,6 @@ if(isset($_POST["actualizar"]) && isset($_POST["id_usuario"]))
    $id_estado = $_POST['id_estado'];
 
 
-
    $sql_update="UPDATE tb_usuarios SET nombre_usuario = '$nombre_usuario', direccion = '$direccion', correo = '$correo', 
    telefono = '$telefono', password = '$password',tarj_prof = '$tarj_prof',id_tipo_usuario = $id_tipo_usuario,id_estado = $id_estado WHERE id_usuario = '". $id_usuario."'";
    $cs=mysqli_query($mysqli, $sql_update);

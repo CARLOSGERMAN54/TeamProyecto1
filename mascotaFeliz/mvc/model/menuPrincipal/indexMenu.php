@@ -48,9 +48,8 @@ if(isset($_POST['btncerrar']))
 					<!--id_tipo_usuario =(1) administrador-->
 					<!--id_tipo_usuario =(2) Veterinario o funcionario-->
 					<!--id_tipo_usuario =(3) propietario-->
-					<!--id_tipo_usuario =(10) auxiliar-->
-					<?php if($usua['id_tipo_usuario'] ==1)
-					{ 
+			<?php if($usua['id_tipo_usuario'] ==1)
+			{ 
 					?>
 					<li>
 						<a href="#">
@@ -63,19 +62,33 @@ if(isset($_POST['btncerrar']))
 		     }
 			 ?>
 
-			<?php if($usua['id_tipo_usuario'] ==2)
+			<?php if($usua['id_tipo_usuario'] ==1)
 			{ 
-			?>
-			<li>
-				<a href="#">
-					<img src="img/analisis.png" onclick="window.location.href='../registroMascota.php'" alt="" class="imagen">
-					<span class="text-item">REGISTRO MASCOTAS</span>
-					<span class="down-item"></span>
-				</a>
-			</li>
-			<?php
+					?>
+					<li>
+						<a href="#">
+							<img src="img/registroMedicamento1.png" onclick="window.location.href='../registroMedicamento.php'" alt="" class="imagen">
+							<span class="text-item">REGISTRO MEDICAMENTO</span>
+							<span class="down-item"></span>
+						</a>
+					</li>
+				<?php
 		     }
 			 ?>
+			 			<?php if($usua['id_tipo_usuario'] ==1 || $usua['id_tipo_usuario'] ==2)
+			{ 
+					?>
+					<li>
+						<a href="#">
+							<img src="img/listadoMedicamentos1.png" onclick="window.location.href='../listadoMedicamentos.php'" alt="" class="imagen">
+							<span class="text-item">LISTADO MEDICAMENTOS</span>
+							<span class="down-item"></span>
+						</a>
+					</li>
+				<?php
+		     }
+			 ?>
+
 		   <?php if($usua['id_tipo_usuario'] ==2 || $usua['id_tipo_usuario'] ==1)
 			{ 
 			?>
@@ -94,7 +107,7 @@ if(isset($_POST['btncerrar']))
 			?>
 			<li>
 				<a href="#">
-					<img src="img/implementar.jpg" alt="" class="imagen">
+					<img src="img/implementar.jpg" onclick="window.location.href='../registroVisita.php'" alt="" class="imagen">
 					<span class="text-item">HISTORIA CLINICA</span>
 					<span class="down-item"></span>
 				</a>
@@ -115,19 +128,7 @@ if(isset($_POST['btncerrar']))
 			<?php
 		     }
 			 ?>
-			<?php if($usua['id_tipo_usuario'] ==1)
-			{ 
-			?>
-			<li>
-				<a href="#">
-					<img src="img/asignarRoles.png" onclick="alert('En construcción')" alt="" class="imagen">
-					<span class="text-item">ASIGNAR ROLES</span>
-					<span class="down-item"></span>
-				</a>
-			</li>
-			<?php
-		     }
-			 ?>
+
 			<?php if($usua['id_tipo_usuario'] ==1)
 			{ 
 			?>
@@ -155,6 +156,36 @@ if(isset($_POST['btncerrar']))
 			<?php
 		     }
 			 ?>
+
+			<?php if($usua['id_tipo_usuario'] == 2)
+			{ 
+			?>
+			<li>
+				<a href="#">
+					<img src="img/registroMascota1.png" onclick="window.location.href='../registroMascota.php'" alt="" class="imagen">
+					<span class="text-item">Formular Medicamentos</span>
+					<span class="down-item"></span>
+				</a>
+			</li>
+			<?php
+		     }
+			 ?>
+
+		<?php if($usua['id_tipo_usuario'] == 3)
+			{ 
+			?>
+			<li>
+				<a href="#">
+					<img src="img/registroMascota4.png" onclick="window.location.href='../registroMascota.php'" alt="" class="imagen">
+					<span class="text-item">Consultar Mascotas</span>
+					<span class="down-item"></span>
+				</a>
+			</li>
+			<?php
+		     }
+			 ?>
+
+
 		</ul>
 		
 	</nav>
