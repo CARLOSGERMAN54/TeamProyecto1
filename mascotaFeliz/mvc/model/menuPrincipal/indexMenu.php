@@ -67,7 +67,7 @@ if(isset($_POST['btncerrar']))
 					?>
 					<li>
 						<a href="#">
-							<img src="img/registroMedicamento1.png" onclick="window.location.href='../registroMedicamento.php'" alt="" class="imagen">
+							<img src="img/registroMedicamento.png" onclick="window.location.href='../registroMedicamento.php'" alt="" class="imagen">
 							<span class="text-item">REGISTRO MEDICAMENTO</span>
 							<span class="down-item"></span>
 						</a>
@@ -80,7 +80,7 @@ if(isset($_POST['btncerrar']))
 					?>
 					<li>
 						<a href="#">
-							<img src="img/listadoMedicamentos1.png" onclick="window.location.href='../listadoMedicamentos.php'" alt="" class="imagen">
+							<img src="img/listadoMedicamento.png" onclick="window.location.href='../registroMedicamento.php'" alt="" class="imagen">
 							<span class="text-item">LISTADO MEDICAMENTOS</span>
 							<span class="down-item"></span>
 						</a>
@@ -107,7 +107,7 @@ if(isset($_POST['btncerrar']))
 			?>
 			<li>
 				<a href="#">
-					<img src="img/implementar.jpg" onclick="window.location.href='../registroVisita.php'" alt="" class="imagen">
+					<img src="img/historiaClinica.png" onclick="window.location.href='../registroVisita.php'" alt="" class="imagen">
 					<span class="text-item">HISTORIA CLINICA</span>
 					<span class="down-item"></span>
 				</a>
@@ -162,8 +162,8 @@ if(isset($_POST['btncerrar']))
 			?>
 			<li>
 				<a href="#">
-					<img src="img/registroMascota1.png" onclick="window.location.href='../registroMascota.php'" alt="" class="imagen">
-					<span class="text-item">Formular Medicamentos</span>
+					<img src="img/listadoMedicamento.png" onclick="window.location.href='../registroMedicamento.php'" alt="" class="imagen">
+					<span class="text-item">FORMULAR MEDICAMENTOS</span>
 					<span class="down-item"></span>
 				</a>
 			</li>
@@ -176,8 +176,8 @@ if(isset($_POST['btncerrar']))
 			?>
 			<li>
 				<a href="#">
-					<img src="img/registroMascota4.png" onclick="window.location.href='../registroMascota.php'" alt="" class="imagen">
-					<span class="text-item">Consultar Mascotas</span>
+					<img src="img/listadoUsuarios.png" onclick="window.location.href='../registroMascota.php'" alt="" class="imagen">
+					<span class="text-item">CONSULTAR MASCOTA</span>
 					<span class="down-item"></span>
 				</a>
 			</li>
